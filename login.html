@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+</head>
+<body>
+        <!-- Exemple d'icône de connexion dans l'en-tête -->
+    <div style="text-align: right; margin: 10px;">
+        <?php session_start(); ?>
+        <?php if (isset($_SESSION['username'])): ?>
+            <span>Bienvenue, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
+            <a href="logout.php" style="margin-left: 10px;">Déconnexion</a>
+        <?php else: ?>
+            <a href="login.php">Connexion</a>
+        <?php endif; ?>
+    </div>
+    <h1>Connexion</h1>
+    <form method="POST" action="login.php">
+        <label for="username">Nom d'utilisateur :</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button type="submit">Se connecter</button>
+    </form>
+</body>
+</html>

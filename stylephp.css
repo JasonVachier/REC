@@ -1,0 +1,58 @@
+body {
+    background-color: #ffffff; /* Fond blanc */
+    font-family: Arial, sans-serif; /* Police de caractères */
+    margin: 0; /* Supprimer les marges par défaut */
+    padding: 20px; /* Espacement intérieur */
+}
+
+h1 {
+    text-align: center; /* Titre centré */
+}
+
+ul {
+    list-style-type: none; /* Enlever les puces de la liste */
+    padding: 0; /* Supprimer le padding par défaut */
+}
+
+li {
+    background-color: #f9f9f9; /* Couleur de fond des articles */
+    border: 1px solid #ddd; /* Bordure grise autour des articles */
+    border-radius: 5px; /* Coins arrondis */
+    margin: 10px 0; /* Espacement entre les articles */
+    padding: 15px; /* Espacement intérieur pour les articles */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre pour un léger effet de profondeur */
+}
+
+h2 {
+    margin: 0 0 10px 0; /* Espacement pour le titre de l'article */
+}
+
+p {
+    margin: 5px 0; /* Espacement pour les paragraphes */
+}
+
+a {
+    margin: 0 10px; /* Espacement autour des icônes */
+    color: #007bff; /* Couleur des icônes */
+    text-decoration: none; /* Supprimer le soulignement */
+    font-size: 20px; /* Taille des icônes */
+}
+
+a:hover {
+    color: #0056b3; /* Couleur des icônes au survol */
+}
+
+.header-icon {
+    text-align: right;
+    margin: 10px;
+}
+
+.header-icon a {
+    text-decoration: none; /* Retire le soulignement du lien */
+    color: #007BFF; /* Couleur du lien */
+    font-weight: bold; /* Met le lien en gras */
+}
+
+.header-icon span {
+    margin-right: 10px; /* Espacement entre le texte et le lien */
+}
