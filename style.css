@@ -1,5 +1,4 @@
-
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -11,148 +10,16 @@
     src: url(Rubik.ttf);
 }
 
-.lien :hover  {
-    color: #141414c9;
-    }
-
 body {
-    margin: 0;
-    background-color: #000000;
-    color: black;
+    margin: 0; /* Supprimer les marges par défaut */
+    padding: 20px; /* Espacement intérieur */
+    background-color: #f0f0f0; /* Fond gris par défaut */
+    font-family: Arial, sans-serif; /* Police de caractères */
 }
 
-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #d3cec7;
-    padding: 10px 20px;
-}
-
-main {
-    display: flex;
-    flex-direction: column; /* Alignement vertical des blocs */
-    justify-content: flex-start; /* Aligne les blocs en haut */
-    align-items: center; 
-    height: auto; /* Ajuste la hauteur au contenu */
-    text-align: center;
-    background-color: #eeedeb;
-    padding-bottom: 70px; /* Espace pour le footer */
-}
-
-.MainPic {
-    width: 500px; /* réduit la largeur du logo à 100px */
-    height: 200px; /* réduit la hauteur du logo à 50px */
-    margin: 0 auto; /* centre le logo */
-    margin-top: 5%;
-    display: block; /* permet de centrer le logo */
-    border-radius: 10px; /* ajout de la propriété border-radius */
-  }
-
-
-.container{
-    width: 100%;
-    height: 100vh;
-    background-color: #0000002f;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.content{
-    text-align: center;
-    overflow: hidden;
-    padding-bottom: 70px;
-    max-width: 80vw;
-    margin: 0 auto;
-    box-sizing: border-box;
-    width: 100%;
-}
-
-.content h2{
-    padding-bottom: 2%;
-    font-size: 35px;
-    line-height: 200%;
-    color: #F4F4EA;
-    margin-top: 50px;
-    margin-inline: 5%;
-    margin-bottom: 40px;
-}
-
-/* Style du bouton "Join the Movement" */
-.content a {
-    font-size: 23px;
-    color: #fff;
-    text-decoration: none;
-    padding: 15px 25px;
-    border-radius: 30px;
-    border: 0;
-    background: rgba(34, 34, 34, 0.295);
-    position: relative;
-    transition: all 0.3s ease;
-    overflow: hidden;
-    box-shadow: 0px 0px 0px 0px #C9DABF, 0px 0px 0px 0px #808D7C;
-}
-
-/* Animation d'ombre et translation lors du hover */
-.content a:hover {
-    transform: translate(0, -6px);
-    box-shadow: 10px -10px 25px 0px #C9DABF, -10px 10px 25px 0px #5F6F65;
-    background-color: rgba(34, 34, 34, 0.212);
-}
-
-
-.content a:hover::before, .content a:hover::after {
-    transform: translateX(0) translateY(0);
-}
-
-.background-clip{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-}
-
-
-@media (min-aspect-ratio:16/9) {
-    .background-clip{
-        width: 100%;
-        height: auto;
-    }
-}
-
-@media (max-aspect-ratio:16/9) {
-    .background-clip{
-        width: auto;
-        height: 100%;
-    }
-}
-
-footer {
-  background-color: #f4f4ea; /* couleur de fond du footer */
-  padding: 20px; /* espace entre le contenu et le bord du footer */
-  text-align: center; /* alignement du texte au centre */
-  clear: both; /* pour s'assurer que le footer est placé en bas de la page */
-}
-
-footer p {
-  margin-bottom: 10px; /* espace entre les éléments du footer */
-}
-
-footer a {
-  color: #080808; /* couleur du lien */
-  text-decoration: none; /* suppression de la décoration du lien */
-}
-
-footer a:hover {
-  color: #23527c; /* couleur du lien au survol */
-}
-
-.active {
-    text-decoration: underline;
-    color: #867b68de; /* ou une couleur différente pour le lien actif */
-
+nav {
+    background-color: rgba(34, 34, 34, 0.8); /* Fond semi-transparent pour la navigation */
+    color: white;
 }
 
 .nav-header {
@@ -165,101 +32,93 @@ footer a:hover {
     left: 0;
     width: 100%;
     z-index: 1;
-    transition: transform 0.3s ease; /* Ajoute une transition pour le mouvement */
+    background-color: #d3cec7; /* Couleur de fond de la nav */
 }
 
-.nav-header .header-link {
+.header-link {
     margin-right: 25px;
     font-size: 20px;
-    margin-top: 20px;
-    margin-left: 25px;
     color: #fff;
     text-decoration: none;
     padding: 15px 30px;
     border-radius: 10px;
-    border: 0;
     background: rgba(34, 34, 34, 0);
-    position: relative;
     transition: all 0.3s ease;
-    overflow: hidden;
-    box-shadow: 0px 0px 0px 0px #c9dabf67, 0px 0px 0px 0px #808d7c7c;
 }
 
-.nav-header .header-link:hover {
-    transform: translate(0, -6px);
-    box-shadow: 10px -10px 25px 0px #c9dabf6c, -10px 10px 25px 0px #5f6f6580;
-    background-color: rgba(34, 34, 34, 0.212);
-}
-
-.nav-header .header-link:hover::before, .nav-header .header-link:hover::after {
-    transform: translateX(0) translateY(0);
+.header-link:hover {
+    color: #141414c9;
 }
 
 .icon {
-    width: 70px; /* adjust the size to your liking */
+    width: 70px; /* Adjust the size to your liking */
     height: 70px;
-    margin-top: 10px;
     margin-right: 100px; /* add some space between the icon and the links */
-    margin-left: 30px;
-    animation: rotation 10s infinite linear; /* Animation continue */
 }
 
-@keyframes rotation {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+li.article-block {
+    background-color: rgba(0, 0, 0, 0.7); /* Fond noir avec transparence */
+    color: white; /* Couleur du texte en blanc */
+    padding: 15px; /* Espacement intérieur */
+    margin: 10px 0; /* Marge supérieure et inférieure */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Ombre portée */
 }
 
-.static-background {
-    background-image: url('image/bg/cold-1866516.jpg'); /* Remplacer par ton image de fond */
+
+ul {
+    list-style-type: none; /* Enlever les puces de la liste */
+    padding: 0; /* Supprimer le padding par défaut */
+}
+
+
+li.article-block h2 {
+    margin-top: 0; /* Supprime la marge supérieure du titre */
+}
+
+li {
+    background-color: #f9f9f9; /* Couleur de fond des articles */
+}
+
+h1, h2 {
+    text-align: center; /* Titre centré */
+    margin: 0 0 10px 0; /* Espacement pour le titre de l'article */
+}
+
+p {
+    margin: 5px 0; /* Espacement pour les paragraphes */
+}
+
+a {
+    margin: 0 10px; /* Espacement autour des icônes */
+    color: #007bff; /* Couleur des icônes */
+    text-decoration: none; /* Supprimer le soulignement */
+    font-size: 20px; /* Taille des icônes */
+}
+
+a:hover {
+    color: #0056b3; /* Couleur des icônes au survol */
+}
+
+.footer {
+    background-color: #f4f4ea; /* couleur de fond du footer */
+    padding: 20px; /* espace entre le contenu et le bord du footer */
+    text-align: center; /* alignement du texte au centre */
+}
+
+.footer a {
+    color: #080808; /* couleur du lien */
+    text-decoration: none; /* suppression de la décoration du lien */
+}
+
+.footer a:hover {
+    color: #23527c; /* couleur du lien au survol */
+}
+
+.main-background {
+    background-image: url('image/bg/cold-1866516.jpg'); /* Chemin vers votre image de fond */
     background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    min-height: 100vh;
-    padding-top: 100px; /* Pour éviter que le contenu chevauche le nav */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-/* Blocs de texte avec fond semi-transparent */
-.text-block {
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 20px;
-    border-radius: 10px;
-    width: 40%;
-    text-align: center;
-    color: #fff;
-}
-
-.text-block h2 {
-    margin-bottom: 10px;
-    font-size: 2em;
-}
-
-.text-block p {
-    font-size: 1.2em;
-}
-
-/* Positionnement des blocs */
-.mission {
-    margin-top: 5%;
-    align-self: flex-start; /* Place à gauche */
-    margin-left: 5%; /* Ajouter un peu d'espace à gauche */
-}
-
-.about {
-    margin-top: 5%;
-    align-self: flex-end; /* Place à droite */
-    margin-right: 5%; /* Ajouter un peu d'espace à droite */
-}
-
-.what-it-means {
-    margin-top: 5%;
-    align-self: flex-start; /* Place à gauche */
-    margin-left: 5%; /* Ajouter un peu d'espace à gauche */
-    margin-bottom: 5%;
+    background-attachment: fixed; /* Fixe l'image en arrière-plan */
+    min-height: 100vh; /* Assure que le contenu couvre toute la hauteur */
+    padding-top: 80px; /* Espace pour le nav */
 }
