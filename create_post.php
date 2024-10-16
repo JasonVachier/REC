@@ -8,8 +8,9 @@ if (!isset($_SESSION['username'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $title = $_POST['title'];
-    $content = $_POST['content'];
+    // Protection contre les injections SQL
+    $title = mysqli_real_escape_string($conn, $_POST['title']);
+    $content = mysqli_real_escape_string($conn, $_POST['content']);
     $image = null;
 
     // Gestion du téléchargement de fichier
@@ -32,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Enregistrement de l'article dans la base de données
     $sql = "INSERT INTO posts (title, content, image) VALUES ('$title', '$content', '$image')";
 
-    // Exécutez la requête et gérez les erreurs
+    // Exécute la requête et gère les erreurs
     if ($conn->query($sql) === TRUE) {
         header("Location: dashboard.php");
         exit();
