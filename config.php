@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root"; // utilisateur par défaut de XAMPP
-$password = ""; // mot de passe par défaut de XAMPP
-$dbname = "REC";
+$servername = "srv1618.hstgr.io";
+$username = "u305296665_JasonVachier"; // utilisateur par défaut de XAMPP
+$password = "Jhncjomm13012004."; // mot de passe par défaut de XAMPP
+$dbname = "u305296665_REC";
 
 // Créer une connexion
 $conn = new mysqli($servername, $username, $password, $dbname);
