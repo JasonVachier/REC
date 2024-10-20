@@ -35,7 +35,7 @@ if (isset($_GET['logout'])) {
                 <a href="login.html" class="header-link" style="margin-left: 10px;">login</a>
             <?php endif; ?>
         </div>
-    </nav>
+    </nav> 
 
     <div class="container">
         <video autoplay loop muted plays-inline class="background-clip">
