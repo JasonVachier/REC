@@ -19,7 +19,7 @@ $result = $conn->query($sql);
 
     <nav class="nav-header">
         <img class="icon" src="image/logo/logo.png">
-        <a class="header-link" href="index.html">Home</a>
+        <a class="header-link" href="index.php">Home</a>
         <a class="header-link" href="about.html">About</a>
         <a class="header-link" href="WRE.html">Why Renewable Energy</a>
         <a class="header-link active" href="articles.php">Articles</a>
@@ -34,7 +34,7 @@ $result = $conn->query($sql);
         </div>
     </nav>
 
-    <main class="static-background"> <!-- Change cette classe si besoin -->
+    <main class="static-background"> 
         <div class="content">
             <h1>Liste des Articles</h1>
 
@@ -55,7 +55,9 @@ $result = $conn->query($sql);
                 <p>Aucun article trouvé.</p>
             <?php endif; ?>
 
-            <a href="dashboard.php">Retour au tableau de bord</a>
+            <?php if (isset($_SESSION['username'])): ?>
+                <a href="dashboard.php">Retour au tableau de bord</a>
+            <?php endif; ?>
         </div>
     </main>
 

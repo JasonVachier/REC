@@ -13,7 +13,7 @@ if (isset($_SERVER['HTTP_REFERER'])) {
         header("Location: " . $_SERVER['HTTP_REFERER']); // Renvoyer à la page d'origine
     }
 } else {
-    header("Location: index.html"); // Rediriger vers index.html par défaut
+    header("Location: index.php"); // Rediriger vers index.html par défaut
 }
 
 exit(); // Terminer le script
