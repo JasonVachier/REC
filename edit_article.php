@@ -7,46 +7,45 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = intval($_POST['id']);
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-    $image = $_POST['current_image']; // Conserve l'image actuelle par défaut
+$post_id = $_GET['id']; // Assure-toi que l'ID de l'article est bien transmis
+$sql = "SELECT * FROM posts WHERE id=$post_id";
+$result = $conn->query($sql);
+$post = $result->fetch_assoc();
 
-    // Gestion de l'image
+// Récupération de l'image actuelle
+$current_image = isset($post['image']) ? $post['image'] : null;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Échappement des données pour éviter les erreurs SQL
+    $title = mysqli_real_escape_string($conn, $_POST['title']);
+    $content = mysqli_real_escape_string($conn, $_POST['content']);
+    $new_image = $current_image; // On garde l'image actuelle par défaut
+
+    // Gestion du téléchargement de la nouvelle image
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         $upload_dir = 'uploads/';
-        $image = basename($_FILES['image']['name']);
-        $upload_file = $upload_dir . $image;
+        $new_image = basename($_FILES['image']['name']);
+        $upload_file = $upload_dir . $new_image;
 
-        // Vérifie si le dossier d'upload existe, sinon le crée
         if (!is_dir($upload_dir)) {
             mkdir($upload_dir, 0777, true);
         }
 
-        // Vérifie si le téléchargement a réussi
         if (!move_uploaded_file($_FILES['image']['tmp_name'], $upload_file)) {
             echo "Erreur lors du téléchargement de l'image.";
             exit();
         }
-    } elseif (isset($_POST['remove_image'])) {
-        $image = null; // Retire l'image
     }
 
-    // Met à jour l'article dans la base de données
-    $sql = "UPDATE posts SET title = '$title', content = '$content', image = '$image' WHERE id = $id";
+    // Requête de mise à jour
+    $sql = "UPDATE posts SET title='$title', content='$content', image='$new_image' WHERE id=$post_id";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: dashboard.php");
         exit();
     } else {
-        echo "Erreur : " . $conn->error;
+        echo "Erreur : " . $sql . "<br>" . $conn->error;
     }
-} else {
-    $id = intval($_GET['id']);
-    $sql = "SELECT * FROM posts WHERE id = $id";
-    $result = $conn->query($sql);
-    $post = $result->fetch_assoc();
 }
 ?>
 
@@ -54,13 +53,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Modifier l'article</title>
+    <title>Modifier un article</title>
     <link rel="stylesheet" href="stylephp.css">
 </head>
 <body>
-    <h1>Modifier l'article</h1>
-    <form action="edit_article.php" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
+    <h1>Modifier un article</h1>
+    <form action="edit_article.php?id=<?php echo $post_id; ?>" method="POST" enctype="multipart/form-data">
         <div>
             <label for="title">Titre :</label>
             <input type="text" name="title" value="<?php echo htmlspecialchars($post['title']); ?>" required>
@@ -70,29 +68,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <textarea name="content" required><?php echo htmlspecialchars($post['content']); ?></textarea>
         </div>
         <div>
-            <label for="image">Télécharger une nouvelle image :</label>
+            <label for="image">Télécharger une nouvelle image (facultatif) :</label>
             <input type="file" name="image" accept="image/*">
+            <?php if ($current_image): ?>
+                <p>Image actuelle : <img src="uploads/<?php echo htmlspecialchars($current_image); ?>" style="max-width: 150px;"></p>
+            <?php endif; ?>
         </div>
-
-        <?php if ($post['image']): ?>
-            <div>
-                <h4>Image actuelle :</h4>
-                <img src="uploads/<?php echo htmlspecialchars($post['image']); ?>" alt="Image de l'article" style="max-width: 200px;">
-                <p>Voulez-vous supprimer l'image actuelle ?</p>
-                <input type="checkbox" name="remove_image" value="1"> Oui, supprimer l'image
-            </div>
-        <?php endif; ?>
-
-        <div style="text-align: center; margin-top: 20px;">
-            <button type="submit" style="padding: 10px 20px; font-size: 16px;">Mettre à jour l'article</button>
+        <div>
+            <button type="submit">Mettre à jour l'article</button>
         </div>
     </form>
-    <div style="text-align: center; margin-top: 20px;">
-        <a href="dashboard.php">Retour au tableau de bord</a>
-    </div>
 </body>
 </html>
-
-<?php
-$conn->close();
-?>

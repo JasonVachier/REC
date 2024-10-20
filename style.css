@@ -50,14 +50,16 @@ main {
   }
 
 
-.container{
+.container {
     width: 100%;
     height: 100vh;
     background-color: #0000002f;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column; /* Ajout pour une meilleure mise en page sur petits écrans */
 }
+
 
 .content{
     text-align: center;
@@ -286,6 +288,7 @@ ul li.article-block {
 .article-block h2 {
     font-size: 1.8em;
     margin-bottom: 20px;
+    color: #fff;
 }
 
 .article-block p {
@@ -299,4 +302,44 @@ ul li.article-block {
     border-radius: 10px;
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+.content h1 {
+    color: #ffffff; /* Remplace #ff6347 par la couleur de ton choix */
+}
+
+
+@media (max-width: 1200px) {
+    .MainPic {
+        width: 400px; /* Réduction de la taille du logo */
+    }
+    
+    .content h2 {
+        font-size: 30px; /* Réduction de la taille du texte */
+    }
+}
+
+@media (max-width: 800px) {
+    .MainPic {
+        width: 300px; /* Réduction supplémentaire pour écrans plus petits */
+    }
+    
+    .content h2 {
+        font-size: 25px; /* Réduction de la taille du texte */
+    }
+}
+
+@media (max-width: 600px) {
+    .MainPic {
+        width: 250px; /* Encore plus petit pour mobile */
+    }
+    
+    .content h2 {
+        font-size: 20px; /* Taille du texte encore plus petite */
+    }
+
+    .content a {
+        font-size: 18px; /* Adapter la taille du bouton */
+        padding: 10px 20px; /* Adapter le padding du bouton */
+    }
 }
