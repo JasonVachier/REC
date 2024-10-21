@@ -46,7 +46,7 @@ if (isset($_GET['logout'])) {
         </div>
     </nav>
 
-    <main class="static-background">
+    <main class="wrebackground">
 
         <div class="content">
             <h2>Contribute to the Energy Transition</h2>

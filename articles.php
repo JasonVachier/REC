@@ -21,8 +21,8 @@ $result = $conn->query($sql);
     <nav class="nav-header">
         <img class="icon" src="image/logo/logo.png">
         <a class="header-link" href="index.php">Home</a>
-        <a class="header-link" href="about.html">About</a>
-        <a class="header-link" href="WRE.html">Why Renewable Energy</a>
+        <a class="header-link" href="about.php">About</a>
+        <a class="header-link" href="WRE.php">Why Renewable Energy</a>
         <a class="header-link active" href="articles.php">Blog</a>
         <a class="header-link" href="leadership.html">Leadership</a>
         <div style="margin-left: auto; text-align: right;">
