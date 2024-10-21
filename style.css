@@ -403,6 +403,14 @@ ul li.article-block {
 /* Cacher le menu par défaut sur les écrans plus petits */
 @media (max-width: 600px) {
 
+
+    .text-block {
+        width: 100%; /* Prendre toute la largeur de l'écran */
+        margin: 0; /* Enlever les marges */
+        padding: 10px; /* Optionnel : ajouter un peu d'espace intérieur */
+        margin-bottom: 5%;
+    }
+
     #menu-toggle {
         display: block;
 
