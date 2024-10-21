@@ -373,7 +373,7 @@ ul li.article-block {
 }
 
 /* Cacher le menu par défaut sur les écrans plus petits */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .nav-links {
         display: none; /* Cache le menu par défaut sur mobile */
     }
@@ -399,12 +399,7 @@ ul li.article-block {
     }
 }
 
-/* Styles pour les écrans plus grands */
-@media (min-width: 769px) {
-    .menu-toggle {
-        display: none; /* Masque le bouton de menu sur les écrans plus larges */
-    }
-}
+
 
 .button {
     display: inline-block;
