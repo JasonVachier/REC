@@ -346,6 +346,7 @@ ul li.article-block {
 }
 
 .menu-toggle {
+    display: none;
     margin-right: 25px;
     font-size: 18px;
     color: #fff;
@@ -374,6 +375,11 @@ ul li.article-block {
 
 /* Cacher le menu par défaut sur les écrans plus petits */
 @media (max-width: 600px) {
+
+    #menu-toggle {
+        display: block;
+
+    }
 
     .MainPic {
         width: 250px;
@@ -409,7 +415,6 @@ ul li.article-block {
     }
 }
  
-
 
 .button {
     display: inline-block;
