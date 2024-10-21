@@ -571,7 +571,27 @@ ul li.article-block {
 }
 
 .dashboardBackground {
-    background-color: #7a7a7a;
+    background-image: url('image/bg/black.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    min-height: 100vh;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.articlesbackground {
+    background-image: url('image/bg/blue.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    min-height: 100vh;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .post-actions {

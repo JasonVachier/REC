@@ -12,6 +12,7 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
     <title>Blog - Renewable Energy Club</title>
     <link rel="stylesheet" href="style.css"> <!-- Change le nom de fichier ici -->
 </head>
@@ -34,7 +35,7 @@ $result = $conn->query($sql);
         </div>
     </nav>
 
-    <main class="static-background"> 
+    <main class="articlesbackground"> 
         <div class="content">
             <h1>List of Articles</h1>
 

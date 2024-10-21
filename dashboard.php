@@ -16,6 +16,7 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
     <title>Dashboard - Renewable Energy Club</title>
     <link rel="stylesheet" href="style.css"> <!-- Assurez-vous que le fichier CSS approprié est chargé -->
 </head>
@@ -51,7 +52,7 @@ $result = $conn->query($sql);
                                 <img src="uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Image de l'article" style="max-width: 100%; height: auto;">
                             <?php endif; ?>
                             <p><?php echo htmlspecialchars($row['content']); ?></p>
-                            <p><em>published on<?php echo $row['created_at']; ?></em></p>
+                            <p><em>published on <?php echo $row['created_at']; ?></em></p>
                             <div class="post-actions">
                                 <a href="edit_article.php?id=<?php echo $row['id']; ?>" title="Modifier">
                                     <i class="fas fa-edit"></i> Modify
