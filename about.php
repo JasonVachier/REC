@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 // Déconnexion
 if (isset($_GET['logout'])) {
     session_destroy(); // Détruit la session
-    header("Location: index.php", true, 303); // Redirige vers la page d'accueil après déconnexion
+    header("Location: about.php", true, 303); // Redirige vers la page d'accueil après déconnexion
     exit();
 }
 ?>
