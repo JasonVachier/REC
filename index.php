@@ -57,7 +57,7 @@ if (isset($_GET['logout'])) {
         <div class="content">
             <img class="MainPic" src="image/logo/logoBlanc.png">
             <h2>Education and career opportunities in the clean energy space for NYU students</h2>
-            <a href="about.html">Join the Movement</a>
+            <a href="about.php">Join the Movement</a>
         </div>
         <?php if (isset($_SESSION['username'])): ?>
             <a href="dashboard.php" class="button-index">Go to Dashboard</a>
