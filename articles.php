@@ -12,7 +12,7 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Articles - Renewable Energy Club</title>
+    <title>Blog - Renewable Energy Club</title>
     <link rel="stylesheet" href="style.css"> <!-- Change le nom de fichier ici -->
 </head>
 <body>
@@ -22,21 +22,21 @@ $result = $conn->query($sql);
         <a class="header-link" href="index.php">Home</a>
         <a class="header-link" href="about.html">About</a>
         <a class="header-link" href="WRE.html">Why Renewable Energy</a>
-        <a class="header-link active" href="articles.php">Articles</a>
+        <a class="header-link active" href="articles.php">Blog</a>
         <a class="header-link" href="leadership.html">Leadership</a>
         <div style="margin-left: auto; text-align: right;">
             <?php if (isset($_SESSION['username'])): ?>
                 <span>Bienvenue, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
-                <a href="logout.php" class="header-link" style="margin-left: 10px;">Déconnexion</a>
+                <a href="logout.php" class="header-link" style="margin-left: 10px;">logout</a>
             <?php else: ?>
-                <a href="login.html" class="header-link" style="margin-left: 10px;">Connexion</a>
+                <a href="login.html" class="header-link" style="margin-left: 10px;">login</a>
             <?php endif; ?>
         </div>
     </nav>
 
     <main class="static-background"> 
         <div class="content">
-            <h1>Liste des Articles</h1>
+            <h1>List of Articles</h1>
 
             <?php if ($result->num_rows > 0): ?>
                 <ul>
@@ -47,16 +47,16 @@ $result = $conn->query($sql);
                             <?php if ($row['image']): ?>
                                 <img src="uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Image de l'article" style="max-width: 100%; height: auto;">
                             <?php endif; ?>
-                            <p><em>Publié le <?php echo $row['created_at']; ?></em></p>
+                            <p><em>Publish on <?php echo $row['created_at']; ?></em></p>
                         </li>
                     <?php endwhile; ?>
                 </ul>
             <?php else: ?>
-                <p>Aucun article trouvé.</p>
+                <p>No items found</p>
             <?php endif; ?>
 
             <?php if (isset($_SESSION['username'])): ?>
-                <a href="dashboard.php">Retour au tableau de bord</a>
+                <a href="dashboard.php">Back to dashboard</a>
             <?php endif; ?>
         </div>
     </main>

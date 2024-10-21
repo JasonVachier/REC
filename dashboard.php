@@ -68,9 +68,7 @@ $result = $conn->query($sql);
             <?php endif; ?>
 
             <div style="text-align: center; margin-top: 20px;">
-                <a href="create_post.php">
-                    <button class="create-post-button">Write a new article</button>
-                </a>
+                <a href="create_post.php">Write a new article</a>
             </div>
         </div>
     </main>
