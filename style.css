@@ -374,6 +374,16 @@ ul li.article-block {
 
 /* Cacher le menu par défaut sur les écrans plus petits */
 @media (max-width: 600px) {
+
+    .MainPic {
+        width: 250px;
+        height: 100px;
+    }
+
+    .content h2 {
+        font-size: 20px;
+    }
+
     .nav-links {
         display: none; /* Cache le menu par défaut sur mobile */
     }
