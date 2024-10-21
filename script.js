@@ -13,3 +13,17 @@ window.addEventListener('scroll', function() {
     }
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Pour éviter les valeurs négatives
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navHeader = document.querySelector('.nav-header');
+
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function () {
+            navHeader.classList.toggle('open'); // Utilise la classe 'open' pour montrer/cacher le menu
+        });
+    } else {
+        console.error('Le bouton .menu-toggle n\'a pas été trouvé');
+    }
+});

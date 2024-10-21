@@ -345,34 +345,66 @@ ul li.article-block {
     }
 }
 
-/* Empilement des éléments sur mobile */
-@media (max-width: 600px) {
-    .nav-header {
-        flex-direction: column; /* Empiler les éléments verticalement */
-        justify-content: flex-start; /* Aligner en haut */
-        height: auto; /* Adapter la hauteur automatiquement */
-        padding: 20px 10px; /* Ajouter du padding */
+.menu-toggle {
+    margin-right: 25px;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 10px;
+    border: 0;
+    background: rgba(34, 34, 34, 0);
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0px 0px 0px 0px #c9dabf67, 0px 0px 0px 0px #808d7c7c;
+}
+
+/* Effet au survol */
+.menu-toggle:hover {
+    transform: translate(0, -6px);
+    box-shadow: 10px -10px 25px 0px #c9dabf6c, -10px 10px 25px 0px #5f6f6580;
+    background-color: rgba(34, 34, 34, 0.212);
+}
+
+
+
+/* Styles par défaut pour le menu */
+.nav-links {
+    display: flex; /* Affiche le menu par défaut sur les écrans larges */
+}
+
+/* Cacher le menu par défaut sur les écrans plus petits */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Cache le menu par défaut sur mobile */
     }
 
-    /* Les liens du menu vont s'afficher les uns en dessous des autres */
-    .nav-header .header-link {
-        display: block; /* Forcer les liens à occuper toute la largeur */
-        margin: 5px 0; /* Ajouter un peu d'espace entre les liens */
-        text-align: center; /* Centrer le texte des liens */
-        width: 100%; /* S'assurer que les liens prennent toute la largeur */
-        font-size: 20px; /* Agrandir légèrement le texte pour mobile */
+    .nav-header.open .nav-links {
+        display: flex; /* Affiche le menu quand la classe 'open' est activée sur mobile */
+        flex-direction: column; /* Aligne les éléments du menu en colonne */
+        width: 100%; /* Largeur pleine */
+        background-color: #333333c9; /* Couleur de fond du menu mobile */
+        position: absolute; /* Positionné par rapport à la barre de navigation */
+        top: 70px; /* Positionné juste en dessous de la barre de navigation */
+        left: 0;
+        z-index: 1000; /* Assure que le menu soit au-dessus des autres éléments */
     }
 
-    /* Ajuster l'icône pour mobile */
-    .nav-header .icon {
-        width: 50px; /* Réduire la taille de l'icône */
-        height: 50px;
-        margin-bottom: 15px; /* Ajouter un peu d'espace sous l'icône */
+    .menu-toggle {
+        display: block; /* Affiche le bouton de menu sur mobile */
     }
 
-    /* Ajouter plus d'espace en haut du contenu pour éviter le chevauchement */
-    main {
-        padding-top: 200px;
+    /* Garder le bouton de menu visible même lorsque le menu est ouvert */
+    .nav-header.open .menu-toggle {
+        opacity: 0.7; /* Réduire l'opacité si vous souhaitez une indication que le menu est ouvert */
+    }
+}
+
+/* Styles pour les écrans plus grands */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none; /* Masque le bouton de menu sur les écrans plus larges */
     }
 }
 
