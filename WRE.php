@@ -32,7 +32,7 @@ if (isset($_GET['logout'])) {
             <a class="header-link" href="index.php">Home</a>
             <a class="header-link" href="about.php">About</a> <!-- Mettez à jour le lien ici -->
             <a class="header-link" href="WRE.php">Why Renewable Energy</a>
-            <a class="header-link" href="articles.php">Article</a>
+            <a class="header-link" href="articles.php">Blog</a>
             <a class="header-link" href="leadership.html">Leadership</a>
         </div>
 

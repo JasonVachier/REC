@@ -50,30 +50,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Rédiger un nouvel article</title>
+    <title>Write a new article</title>
     <link rel="stylesheet" href="stylephp.css">
 </head>
 <body>
-    <h1>Rédiger un nouvel article</h1>
+    <h1>Write a new article</h1>
     <form action="create_post.php" method="POST" enctype="multipart/form-data">
         <div>
-            <label for="title">Titre :</label>
+            <label for="title">Title :</label>
             <input type="text" name="title" required>
         </div>
         <div>
-            <label for="content">Contenu :</label>
+            <label for="content">Content :</label>
             <textarea name="content" required></textarea>
         </div>
         <div>
-            <label for="image">Télécharger une image :</label>
+            <label for="image">Upload an image :</label>
             <input type="file" name="image" accept="image/*">
         </div>
         <div style="text-align: center; margin-top: 20px;">
-            <button type="submit" style="padding: 10px 20px; font-size: 16px;">Publier l'article</button>
+            <button type="submit" style="padding: 10px 20px; font-size: 16px;">Publish the article</button>
         </div>
     </form>
     <div style="text-align: center; margin-top: 20px;">
-        <a href="dashboard.php">Retour au tableau de bord</a>
+        <a href="dashboard.php">Back to dashboard</a>
     </div>
 </body>
 </html>

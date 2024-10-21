@@ -53,29 +53,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Modifier un article</title>
+    <title>Edit an article</title>
     <link rel="stylesheet" href="stylephp.css">
 </head>
 <body>
-    <h1>Modifier un article</h1>
+    <h1>Edit an article</h1>
     <form action="edit_article.php?id=<?php echo $post_id; ?>" method="POST" enctype="multipart/form-data">
         <div>
-            <label for="title">Titre :</label>
+            <label for="title">Title :</label>
             <input type="text" name="title" value="<?php echo htmlspecialchars($post['title']); ?>" required>
         </div>
         <div>
-            <label for="content">Contenu :</label>
+            <label for="content">Content :</label>
             <textarea name="content" required><?php echo htmlspecialchars($post['content']); ?></textarea>
         </div>
         <div>
-            <label for="image">Télécharger une nouvelle image (facultatif) :</label>
+            <label for="image">Upload a new image (optional):</label>
             <input type="file" name="image" accept="image/*">
             <?php if ($current_image): ?>
-                <p>Image actuelle : <img src="uploads/<?php echo htmlspecialchars($current_image); ?>" style="max-width: 150px;"></p>
+                <p>Current image: <img src="uploads/<?php echo htmlspecialchars($current_image); ?>" style="max-width: 150px;"></p>
             <?php endif; ?>
         </div>
         <div>
-            <button type="submit">Mettre à jour l'article</button>
+            <button type="submit">Update the article</button>
         </div>
     </form>
 </body>
