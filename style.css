@@ -309,7 +309,7 @@ ul li.article-block {
     margin: 40px auto;
     border-radius: 10px;
     color: #fff;
-    width: 80%;
+    width: 80%; /* Largeur par défaut */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     font-family: MainFont;
 }
@@ -412,10 +412,17 @@ ul li.article-block {
     display: flex; /* Affiche le menu par défaut sur les écrans larges */
 }
 
+
+
 /* Cacher le menu par défaut sur les écrans plus petits */
 @media (max-width: 600px) {
+    .article-block {
+        width: 100%; /* Prendre toute la largeur de l'écran */
+        margin: 0; /* Supprime les marges */
+        padding: 10px; /* Ajoute un peu d'espace intérieur si nécessaire */
+    }
 
-
+    /* Autres styles pour mobile */
     .text-block {
         width: 100%; /* Prendre toute la largeur de l'écran */
         margin: 0; /* Enlever les marges */
@@ -425,7 +432,6 @@ ul li.article-block {
 
     #menu-toggle {
         display: block;
-
     }
 
     .MainPic {
