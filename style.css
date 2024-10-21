@@ -246,7 +246,7 @@ footer a:hover {
 }
 
 .text-block {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 20px;
     border-radius: 10px;
     width: 40%;
@@ -437,7 +437,7 @@ ul li.article-block {
         display: flex; /* Affiche le menu quand la classe 'open' est activée sur mobile */
         flex-direction: column; /* Aligne les éléments du menu en colonne */
         width: 100%; /* Largeur pleine */
-        background-color: #333333c9; /* Couleur de fond du menu mobile */
+        background-color: #333333da; /* Couleur de fond du menu mobile */
         position: absolute; /* Positionné par rapport à la barre de navigation */
         top: 70px; /* Positionné juste en dessous de la barre de navigation */
         left: 0;
