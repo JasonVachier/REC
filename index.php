@@ -26,7 +26,7 @@ if (isset($_GET['logout'])) {
     <nav class="nav-header">
         <img class="icon" src="image/logo/logo.png">
         <button class="menu-toggle" aria-label="Toggle menu">
-            <span class="menu-icon">☰</span> <!-- Icône de menu -->
+            <span class="menu-icon">☰ </span> <!-- Icône de menu -->
         </button>
         
         <!-- Conteneur des liens de navigation -->
