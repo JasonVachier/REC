@@ -327,7 +327,7 @@ ul li.article-block {
 /* Media Queries pour les tailles d'écran */
 @media (max-width: 1600px) {
     .MainPic {
-        width: 35%; /* Ajuster l'image pour les écrans entre 1200px et 1600px */
+        width: 40%; /* Ajuster l'image pour les écrans entre 1200px et 1600px */
         height: auto;
     }
 
@@ -358,7 +358,7 @@ ul li.article-block {
 
 @media (max-width: 800px) {
     .MainPic {
-        width: 35%; /* Encore plus petit pour mobile */
+        width: 30%; /* Encore plus petit pour mobile */
         height: auto;
     }
 
