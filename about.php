@@ -6,11 +6,10 @@ if (session_status() === PHP_SESSION_NONE) {
 // Déconnexion
 if (isset($_GET['logout'])) {
     session_destroy(); // Détruit la session
-    header("Location: index.php", true, 303); // Redirige vers la page d'accueil après déconnexion
+    header("Location: about.php", true, 303); // Redirige vers la page d'accueil après déconnexion
     exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,14 +18,14 @@ if (isset($_GET['logout'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
-    <title>REC - Renewable Energy Club</title>
+    <title>About - Renewable Energy Club</title>
 </head>
 <body>
 
     <nav class="nav-header">
         <img class="icon" src="image/logo/logo.png">
         <button class="menu-toggle" aria-label="Toggle menu">
-            <span class="menu-icon">☰ </span> <!-- Icône de menu -->
+            <span class="menu-icon">☰</span> <!-- Icône de menu -->
         </button>
         
         <!-- Conteneur des liens de navigation -->
@@ -49,23 +48,31 @@ if (isset($_GET['logout'])) {
         </div>
     </nav>
 
-    <div class="container">
-        <video autoplay loop muted plays-inline class="background-clip">
-            <source src="video.mp4" type="video/mp4">
-        </video>
+    <main class="static-background">
+        <section class="text-block mission">
+            <h2>Mission</h2>
+            <p>Our mission is to support the next generation of talent in the renewable energy / clean energy space within the NYU community</p>
+            <img src="image/Green.jpg" alt="Green Energy">
+        </section>
 
-        <div class="content">
-            <img class="MainPic" src="image/logo/logoBlanc.png">
-            <h2>Education and career opportunities in the clean energy space for NYU students</h2>
-            <a href="about.html">Join the Movement</a>
-        </div>
-        <?php if (isset($_SESSION['username'])): ?>
-            <a href="dashboard.php" class="button-index">Go to Dashboard</a>
-        <?php endif; ?>
-    </div>
+        <section class="text-block about">
+            <h2>About</h2>
+            <p>Join a community of students curious about the energy transition and receive mentorship on career opportunities in the space</p>
+            <img src="image/NYU.jpg" alt="NYU Community">
+        </section>
+
+        <section class="text-block what-it-means">
+            <h2>What it Means for You</h2>
+            <p>- Ride the tide in a fast-growing industry promising ample job opportunities and deal flow <br><br>- Explore various business models and technologies across the energy transition landscape <br><br>- Contribute to humanity's greatest effort in reversing the negative effects of industrialization</p>
+        </section>
+    </main>
 
     <footer>
-        <p class="footerindex">&copy; 2023 REC - Renewable Energy Club</p>
+        <p>
+            <a href="mailto:renewable-energy-club@nyu.edu">Contact us</a>
+            <br>
+            New York, NY, USA
+        </p>
     </footer>
     
 </body>
