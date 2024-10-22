@@ -60,8 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Write a new article</title>
     <link rel="stylesheet" href="stylephp.css">
-    <link href="https://cdn.quilljs.com/2.0.2/quill.snow.css" rel="stylesheet">
-    <script src="https://cdn.quilljs.com/2.0.2/quill.min.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 </head>
 <body>
     <h1>Write a new article</h1>
