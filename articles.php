@@ -26,7 +26,7 @@ $result = $conn->query($sql);
         
         <div class="nav-links">
             <a class="header-link" href="index.php">Home</a>
-            <a class="header-link" href="about.php">About</a> <!-- Mettez à jour le lien ici -->
+            <a class="header-link" href="about.php">About</a>
             <a class="header-link" href="WRE.php">Why Renewable Energy</a>
             <a class="header-link" href="articles.php">Blog</a>
             <a class="header-link" href="leadership.html">Leadership</a>
@@ -49,9 +49,10 @@ $result = $conn->query($sql);
             <?php if ($result->num_rows > 0): ?>
                 <ul>
                     <?php while ($row = $result->fetch_assoc()): ?>
-                        <li class="article-block"> <!-- Classe ajoutée ici -->
+                        <li class="article-block">
                             <h2><?php echo htmlspecialchars($row['title']); ?></h2>
-                            <p><?php echo htmlspecialchars($row['content']); ?></p>
+                            <!-- Affiche le contenu sans échapper les caractères pour conserver la mise en forme Quill -->
+                            <div><?php echo $row['content']; ?></div>
                             <?php if ($row['image']): ?>
                                 <img src="uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Image de l'article" style="max-width: 100%; height: auto;">
                             <?php endif; ?>
