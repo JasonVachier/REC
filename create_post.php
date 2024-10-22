@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h1>Write a new article</h1>
-    <form action="create_post.php" method="POST" enctype="multipart/form-data">
+    <form action="create-article.php" method="POST" enctype="multipart/form-data">
         <div>
             <label for="title">Title :</label>
             <input type="text" name="title" required>
@@ -81,17 +81,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         var quill = new Quill('#editor-container', {
             theme: 'snow',
             modules: {
-                toolbar: [
-                    [{ header: [1, 2, 3, false] }],
-                    ['bold', 'italic', 'underline'],
-                    ['blockquote', 'code-block'],
-                    [{ list: 'ordered' }, { list: 'bullet' }],
-                    [{ script: 'sub' }, { script: 'super' }],
-                    [{ align: [] }],
-                    ['link', 'image']
-                ]
+                toolbar: {
+                    container: [
+                        [{ header: [1, 2, 3, false] }],
+                        ['bold', 'italic', 'underline'],
+                        ['blockquote', 'code-block'],
+                        [{ list: 'ordered' }, { list: 'bullet' }],
+                        [{ script: 'sub' }, { script: 'super' }],
+                        [{ align: [] }],
+                        ['link', 'image']
+                    ],
+                    handlers: {
+                        'image': function() {
+                            selectLocalImage();
+                        }
+                    }
+                }
             }
         });
+
+        function selectLocalImage() {
+            const input = document.createElement('input');
+            input.setAttribute('type', 'file');
+            input.setAttribute('accept', 'image/*');
+            input.click();
+
+            input.onchange = () => {
+                const file = input.files[0];
+                if (/^image\//.test(file.type)) {
+                    saveToServer(file);
+                } else {
+                    console.warn('You could only upload images.');
+                }
+            };
+        }
+
+        function saveToServer(file) {
+            const formData = new FormData();
+            formData.append('image', file);
+
+            fetch('upload_image.php', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.json())
+              .then(result => {
+                if (result.success) {
+                    insertToEditor(result.url);
+                } else {
+                    console.error('Error:', result.error);
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function insertToEditor(url) {
+            const range = quill.getSelection();
+            quill.insertEmbed(range.index, 'image', url);
+        }
 
         document.querySelector('form').onsubmit = function() {
             document.querySelector('#hidden-content').value = quill.root.innerHTML;
