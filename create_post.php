@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mkdir($upload_dir, 0777, true);
         }
 
-        // Vérifie si le téléchargement a réussi
         if (!move_uploaded_file($_FILES['image']['tmp_name'], $upload_file)) {
             echo "Erreur lors du téléchargement de l'image.";
             exit();
@@ -36,12 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Enregistrement de l'article dans la base de données
     $sql = "INSERT INTO posts (title, content, image) VALUES ('$title', '$content', '$image')";
 
-    // Exécute la requête et gère les erreurs
     if ($conn->query($sql) === TRUE) {
         header("Location: dashboard.php");
         exit();
     } else {
-        echo "Erreur : " . $sql . "<br>" . $conn->error; // Affiche l'erreur
+        echo "Erreur : " . $sql . "<br>" . $conn->error;
     }
 }
 ?>
@@ -51,17 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Write a new article</title>
-    <script src="https://cdn.tiny.cloud/1/y14s5trv0axwjl7n9b0040erhn7e625twf5fc3jopaz2cy4y/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-            selector: 'textarea',
-            plugins: 'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste help wordcount',
-            toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
-            menubar: false,
-            content_css: '//www.tiny.cloud/css/codepen.min.css'
-        });
-    </script>
     <link rel="stylesheet" href="stylephp.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 </head>
 <body>
     <h1>Write a new article</h1>
@@ -72,18 +62,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div>
             <label for="content">Content :</label>
-            <textarea name="content" required></textarea>
+            <div id="editor-container" style="height: 300px; border: 1px solid #ccc;"></div>
+            <input type="hidden" name="content" id="hidden-content">
         </div>
         <div>
             <label for="image">Upload an image :</label>
             <input type="file" name="image" accept="image/*">
         </div>
         <div style="text-align: center; margin-top: 20px;">
-            <button type="submit" style="padding: 10px 20px; font-size: 16px;">Publish the article</button>
+            <button type="submit">Publish the article</button>
         </div>
     </form>
     <div style="text-align: center; margin-top: 20px;">
         <a href="dashboard.php">Back to dashboard</a>
     </div>
+
+    <script>
+        var quill = new Quill('#editor-container', {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{ header: [1, 2, 3, false] }],
+                    ['bold', 'italic', 'underline'],
+                    ['blockquote', 'code-block'],
+                    [{ list: 'ordered' }, { list: 'bullet' }],
+                    [{ script: 'sub' }, { script: 'super' }],
+                    [{ align: [] }],
+                    ['link', 'image']
+                ]
+            }
+        });
+
+        document.querySelector('form').onsubmit = function() {
+            document.querySelector('#hidden-content').value = quill.root.innerHTML;
+        };
+    </script>
 </body>
 </html>
