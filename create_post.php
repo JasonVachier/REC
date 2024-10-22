@@ -1,9 +1,6 @@
 <?php
 session_start();
 include('config.php');
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
@@ -11,29 +8,42 @@ if (!isset($_SESSION['username'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Protection contre les injections SQL
+    // Échappement des données pour éviter les erreurs SQL
     $title = mysqli_real_escape_string($conn, $_POST['title']);
     $content = mysqli_real_escape_string($conn, $_POST['content']);
-    $image = null;
+    
+    // Remplacer les balises img avec le bon lien
+    $dom = new DOMDocument();
+    @$dom->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+    $images = $dom->getElementsByTagName('img');
 
-    // Gestion du téléchargement de fichier
-    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-        $upload_dir = 'uploads/';
-        $image = basename($_FILES['image']['name']);
-        $upload_file = $upload_dir . $image;
+    foreach ($images as $img) {
+        $imageFile = $_FILES['image']['tmp_name'];
+        if ($imageFile) {
+            // Préparer les données pour l'upload
+            $data = [
+                'image' => new CURLFile($imageFile)
+            ];
+            $ch = curl_init('upload-image.php'); // URL de votre script upload-image.php
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($ch);
+            curl_close($ch);
 
-        if (!is_dir($upload_dir)) {
-            mkdir($upload_dir, 0777, true);
-        }
-
-        if (!move_uploaded_file($_FILES['image']['tmp_name'], $upload_file)) {
-            echo "Erreur lors du téléchargement de l'image.";
-            exit();
+            $responseData = json_decode($response, true);
+            if (isset($responseData['url'])) {
+                // Remplacez la src de l'image par l'URL retournée
+                $img->setAttribute('src', $responseData['url']);
+            }
         }
     }
 
+    // Obtenez le nouveau contenu avec les liens d'images mis à jour
+    $content = $dom->saveHTML();
+
     // Enregistrement de l'article dans la base de données
-    $sql = "INSERT INTO posts (title, content, image) VALUES ('$title', '$content', '$image')";
+    $sql = "INSERT INTO posts (title, content) VALUES ('$title', '$content')";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: dashboard.php");
@@ -65,10 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div id="editor-container" style="height: 300px; border: 1px solid #ccc;"></div>
             <input type="hidden" name="content" id="hidden-content">
         </div>
-        <div>
-            <label for="image">Upload an image :</label>
-            <input type="file" name="image" accept="image/*">
-        </div>
         <div style="text-align: center; margin-top: 20px;">
             <button type="submit">Publish the article</button>
         </div>
@@ -81,64 +87,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         var quill = new Quill('#editor-container', {
             theme: 'snow',
             modules: {
-                toolbar: {
-                    container: [
-                        [{ header: [1, 2, 3, false] }],
-                        ['bold', 'italic', 'underline'],
-                        ['blockquote', 'code-block'],
-                        [{ list: 'ordered' }, { list: 'bullet' }],
-                        [{ script: 'sub' }, { script: 'super' }],
-                        [{ align: [] }],
-                        ['link', 'image']
-                    ],
-                    handlers: {
-                        'image': function() {
-                            selectLocalImage();
-                        }
-                    }
-                }
+                toolbar: [
+                    [{ header: [1, 2, 3, false] }],
+                    ['bold', 'italic', 'underline'],
+                    ['blockquote', 'code-block'],
+                    [{ list: 'ordered' }, { list: 'bullet' }],
+                    [{ script: 'sub' }, { script: 'super' }],
+                    [{ align: [] }],
+                    ['link', 'image']
+                ]
             }
         });
-
-        function selectLocalImage() {
-            const input = document.createElement('input');
-            input.setAttribute('type', 'file');
-            input.setAttribute('accept', 'image/*');
-            input.click();
-
-            input.onchange = () => {
-                const file = input.files[0];
-                if (/^image\//.test(file.type)) {
-                    saveToServer(file);
-                } else {
-                    console.warn('You could only upload images.');
-                }
-            };
-        }
-
-        function saveToServer(file) {
-            const formData = new FormData();
-            formData.append('image', file);
-
-            fetch('upload_image.php', {
-                method: 'POST',
-                body: formData
-            }).then(response => response.json())
-              .then(result => {
-                if (result.success) {
-                    insertToEditor(result.url);
-                } else {
-                    console.error('Error:', result.error);
-                }
-            }).catch(error => {
-                console.error('Error:', error);
-            });
-        }
-
-        function insertToEditor(url) {
-            const range = quill.getSelection();
-            quill.insertEmbed(range.index, 'image', url);
-        }
 
         document.querySelector('form').onsubmit = function() {
             document.querySelector('#hidden-content').value = quill.root.innerHTML;
