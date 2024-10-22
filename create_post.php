@@ -52,6 +52,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Write a new article</title>
     <link rel="stylesheet" href="stylephp.css">
+
+    <!-- Intégration de TinyMCE -->
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'lists link image charmap preview hr anchor pagebreak',
+            toolbar_mode: 'floating',
+            height: 500
+        });
+    </script>
 </head>
 <body>
     <h1>Write a new article</h1>
