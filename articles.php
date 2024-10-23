@@ -50,7 +50,7 @@ $result = $conn->query($sql);
                 <ul>
                     <?php while ($row = $result->fetch_assoc()): ?>
                         <li class="article-block">
-                            <h2><?php echo htmlspecialchars($row['title']); ?></h2>
+                            <div><?php echo $row['content']; ?></div>
                             <!-- Affiche le contenu sans échapper les caractères pour conserver la mise en forme Quill -->
                             <div><?php echo $row['content']; ?></div>
                             <?php if ($row['image']): ?>
