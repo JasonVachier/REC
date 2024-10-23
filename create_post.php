@@ -12,7 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = mysqli_real_escape_string($conn, $_POST['title']);
     $content = mysqli_real_escape_string($conn, $_POST['content']);
     
-    // Remplacer les balises img avec le bon lien
+    // Supprimez ou commentez cette partie pour ignorer les images pour l'instant
+    /*
     $dom = new DOMDocument();
     @$dom->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
     $images = $dom->getElementsByTagName('img');
@@ -38,9 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
-
-    // Obtenez le nouveau contenu avec les liens d'images mis à jour
     $content = $dom->saveHTML();
+    */
 
     // Enregistrement de l'article dans la base de données
     $sql = "INSERT INTO posts (title, content) VALUES ('$title', '$content')";
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h1>Write a new article</h1>
-    <form action="create-article.php" method="POST" enctype="multipart/form-data">
+    <form action="create-post.php" method="POST">
         <div>
             <label for="title">Title :</label>
             <input type="text" name="title" required>
