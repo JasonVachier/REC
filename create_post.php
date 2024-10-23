@@ -1,6 +1,9 @@
 <?php
 session_start();
 include('config.php');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
@@ -8,42 +11,29 @@ if (!isset($_SESSION['username'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Échappement des données pour éviter les erreurs SQL
+    // Protection contre les injections SQL
     $title = mysqli_real_escape_string($conn, $_POST['title']);
     $content = mysqli_real_escape_string($conn, $_POST['content']);
-    
-    // Supprimez ou commentez cette partie pour ignorer les images pour l'instant
-    /*
-    $dom = new DOMDocument();
-    @$dom->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-    $images = $dom->getElementsByTagName('img');
+    $image = null;
 
-    foreach ($images as $img) {
-        $imageFile = $_FILES['image']['tmp_name'];
-        if ($imageFile) {
-            // Préparer les données pour l'upload
-            $data = [
-                'image' => new CURLFile($imageFile)
-            ];
-            $ch = curl_init('upload-image.php'); // URL de votre script upload-image.php
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $response = curl_exec($ch);
-            curl_close($ch);
+    // Gestion du téléchargement de fichier
+    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+        $upload_dir = 'uploads/';
+        $image = basename($_FILES['image']['name']);
+        $upload_file = $upload_dir . $image;
 
-            $responseData = json_decode($response, true);
-            if (isset($responseData['url'])) {
-                // Remplacez la src de l'image par l'URL retournée
-                $img->setAttribute('src', $responseData['url']);
-            }
+        if (!is_dir($upload_dir)) {
+            mkdir($upload_dir, 0777, true);
+        }
+
+        if (!move_uploaded_file($_FILES['image']['tmp_name'], $upload_file)) {
+            echo "Erreur lors du téléchargement de l'image.";
+            exit();
         }
     }
-    $content = $dom->saveHTML();
-    */
 
     // Enregistrement de l'article dans la base de données
-    $sql = "INSERT INTO posts (title, content) VALUES ('$title', '$content')";
+    $sql = "INSERT INTO posts (title, content, image) VALUES ('$title', '$content', '$image')";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: dashboard.php");
@@ -65,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h1>Write a new article</h1>
-    <form action="create-post.php" method="POST">
+    <form action="create_post.php" method="POST" enctype="multipart/form-data">
         <div>
             <label for="title">Title :</label>
             <input type="text" name="title" required>
@@ -74,6 +64,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="content">Content :</label>
             <div id="editor-container" style="height: 300px; border: 1px solid #ccc;"></div>
             <input type="hidden" name="content" id="hidden-content">
+        </div>
+        <div>
+            <label for="image">Upload an image :</label>
+            <input type="file" name="image" accept="image/*">
         </div>
         <div style="text-align: center; margin-top: 20px;">
             <button type="submit">Publish the article</button>

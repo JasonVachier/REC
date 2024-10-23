@@ -3,7 +3,7 @@ session_start();
 include('config.php');
 
 // Requête pour récupérer tous les articles
-$sql = "SELECT * FROM posts ORDER BY created_at DESC";
+$sql = "SELECT * FROM posts ORDER BY created_at DESC"; // Tri par date de création, du plus récent au plus ancien
 $result = $conn->query($sql);
 ?>
 
@@ -12,10 +12,12 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
     <title>Blog - Renewable Energy Club</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> <!-- Change le nom de fichier ici -->
 </head>
 <body>
+
     <nav class="nav-header">
         <img class="icon" src="image/logo/logo.png">
         <button class="menu-toggle" aria-label="Toggle menu">
@@ -49,13 +51,17 @@ $result = $conn->query($sql);
                     <?php while ($row = $result->fetch_assoc()): ?>
                         <li class="article-block">
                             <h2><?php echo htmlspecialchars($row['title']); ?></h2>
-                            <div><?php echo $row['content']; ?></div> <!-- Contenu Quill affiché tel quel -->
-                            <p><em>Published on <?php echo $row['created_at']; ?></em></p>
+                            <!-- Affiche le contenu sans échapper les caractères pour conserver la mise en forme Quill -->
+                            <div><?php echo $row['content']; ?></div>
+                            <?php if ($row['image']): ?>
+                                <img src="uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Image de l'article" style="max-width: 100%; height: auto;">
+                            <?php endif; ?>
+                            <p><em>Publish on <?php echo $row['created_at']; ?></em></p>
                         </li>
                     <?php endwhile; ?>
                 </ul>
             <?php else: ?>
-                <p>No articles found.</p>
+                <p>No items found</p>
             <?php endif; ?>
 
             <?php if (isset($_SESSION['username'])): ?>
