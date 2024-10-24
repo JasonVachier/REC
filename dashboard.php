@@ -7,6 +7,12 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
+if (isset($_GET['logout'])) {
+    session_destroy(); 
+    header("Location: articles.php", true, 303); 
+    exit();
+}
+
 $sql = "SELECT * FROM posts ORDER BY created_at DESC";
 $result = $conn->query($sql);
 ?>
@@ -18,19 +24,19 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js" defer></script>
     <title>Dashboard - Renewable Energy Club</title>
-    <link rel="stylesheet" href="style.css"> <!-- Assurez-vous que le fichier CSS approprié est chargé -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav class="nav-header">
         <img class="icon" src="image/logo/logo.png">
         <button class="menu-toggle" aria-label="Toggle menu">
-            <span class="menu-icon">☰</span> <!-- Icône de menu -->
+            <span class="menu-icon">☰</span> 
         </button>
         
         <div class="nav-links">
             <a class="header-link" href="index.php">Home</a>
-            <a class="header-link" href="about.php">About</a> <!-- Mettez à jour le lien ici -->
+            <a class="header-link" href="about.php">About</a> 
             <a class="header-link" href="WRE.php">Why Renewable Energy</a>
             <a class="header-link" href="articles.php">Blog</a>
             <a class="header-link" href="leadership.html">Leadership</a>

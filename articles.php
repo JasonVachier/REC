@@ -5,6 +5,12 @@ include('config.php');
 // Requête pour récupérer tous les articles
 $sql = "SELECT * FROM posts ORDER BY created_at DESC"; // Tri par date de création, du plus récent au plus ancien
 $result = $conn->query($sql);
+
+if (isset($_GET['logout'])) {
+    session_destroy(); 
+    header("Location: articles.php", true, 303); 
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
