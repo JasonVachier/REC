@@ -635,3 +635,8 @@ ul li.article-block {
 .ql-align-left {
     text-align: left;
 }
+
+.date-article{
+    text-align: center;
+    margin-top: 5%;
+}
