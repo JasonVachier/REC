@@ -51,8 +51,6 @@ $result = $conn->query($sql);
                     <?php while ($row = $result->fetch_assoc()): ?>
                         <li class="article-block">
                             <div><?php echo $row['content']; ?></div>
-                            <!-- Affiche le contenu sans échapper les caractères pour conserver la mise en forme Quill -->
-                            <div><?php echo $row['content']; ?></div>
                             <?php if ($row['image']): ?>
                                 <img src="uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Image de l'article" style="max-width: 100%; height: auto;">
                             <?php endif; ?>
