@@ -620,26 +620,19 @@ ul li.article-block {
     margin-right: 1%;
 }
 
-#editor-container {
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 10px;
-    min-height: 200px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
 
-#editor-container .ql-align-center {
-    text-align: center;
-}
-
-#editor-container .ql-align-right {
+.ql-align-right {
     text-align: right;
 }
 
-#editor-container .ql-align-justify {
+.ql-align-center {
+    text-align: center;
+}
+
+.ql-align-justify {
     text-align: justify;
 }
 
-#editor-container .ql-align-left {
+.ql-align-left {
     text-align: left;
 }
