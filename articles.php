@@ -54,7 +54,7 @@ $result = $conn->query($sql);
                             <?php if ($row['image']): ?>
                                 <img src="uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Image de l'article" style="max-width: 100%; height: auto;">
                             <?php endif; ?>
-                            <p class="date-article"><em>Publish on <?php echo $row['created_at']; ?></em></p>
+                            <p><em>Publish on <?php echo $row['created_at']; ?></em></p>
                         </li>
                     <?php endwhile; ?>
                 </ul>
