@@ -307,7 +307,7 @@ ul li.article-block {
     margin: 40px auto;
     border-radius: 10px;
     color: #fff;
-    width: 80%; /* Largeur par défaut */
+    width: 100%; /* Largeur par défaut */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     font-family: MainFont;
 }
