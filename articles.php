@@ -63,7 +63,7 @@ $result = $conn->query($sql);
             <?php endif; ?>
 
             <?php if (isset($_SESSION['username'])): ?>
-                <a class="back-to-bashboard" href="dashboard.php">Back to dashboard</a>
+                <a href="dashboard.php">Back to dashboard</a>
             <?php endif; ?>
         </div>
     </main>
