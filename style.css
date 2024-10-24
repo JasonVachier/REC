@@ -641,3 +641,7 @@ ul li.article-block {
     font-style: italic; /* Conserver le style en italique si vous le souhaitez */
     margin-top: 10px; /* Ajoutez un espacement au besoin */
 }
+
+.back-to-bashboard{
+    text-align: center;
+}
