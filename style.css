@@ -40,7 +40,6 @@ main {
     justify-content: flex-start; /* Aligne les blocs en haut */
     align-items: center; 
     height: auto; /* Ajuste la hauteur au contenu */
-    text-align: center;
     background-color: #eeedeb;
     padding-bottom: 70px; /* Espace pour le footer */
 }
@@ -261,7 +260,6 @@ footer a:hover {
     padding: 20px;
     border-radius: 10px;
     width: 40%;
-    text-align: center;
     color: #fff;
 }
 
