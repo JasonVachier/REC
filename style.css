@@ -65,7 +65,6 @@ main {
 }
 
 .content {
-    text-align: center;
     overflow: hidden;
     padding-bottom: 70px;
     max-width: 80vw;
@@ -304,7 +303,6 @@ ul li.article-block {
 }
 
 .article-block {
-    text-align: left;
     background-color: rgba(0, 0, 0, 0.7);
     padding: 20px;
     margin: 40px auto;
@@ -630,3 +628,18 @@ ul li.article-block {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
+#editor-container .ql-align-center {
+    text-align: center;
+}
+
+#editor-container .ql-align-right {
+    text-align: right;
+}
+
+#editor-container .ql-align-justify {
+    text-align: justify;
+}
+
+#editor-container .ql-align-left {
+    text-align: left;
+}
