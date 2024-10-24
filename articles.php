@@ -50,6 +50,7 @@ $result = $conn->query($sql);
                 <ul>
                     <?php while ($row = $result->fetch_assoc()): ?>
                         <li class="article-block">
+                            <h2><?php echo htmlspecialchars($row['title']); ?></h2>
                             <div><?php echo $row['content']; ?></div>
                             <?php if ($row['image']): ?>
                                 <img src="uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Image de l'article" style="max-width: 100%; height: auto;">
