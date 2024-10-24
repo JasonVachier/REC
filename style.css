@@ -636,8 +636,3 @@ ul li.article-block {
     text-align: left;
 }
 
-.date-article {
-    text-align: center;
-    font-style: italic; /* Conserver le style en italique si vous le souhaitez */
-    margin-top: 10px; /* Ajoutez un espacement au besoin */
-}
