@@ -58,13 +58,13 @@ $result = $conn->query($sql);
                             <?php if (!empty($row['image'])): ?>
                                 <img src="uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Image de l'article" style="max-width: 100%; height: auto;">
                             <?php endif; ?>
-                            <p><?php echo htmlspecialchars($row['content']); ?></p>
-                            <p><em>published on <?php echo $row['created_at']; ?></em></p>
+                            <div><?php echo $row['content']; ?></div>
+                            <div class="date-articles"><p><em>published on <?php echo $row['created_at']; ?></em></p></div>
                             <div class="post-actions">
-                                <a href="edit_article.php?id=<?php echo $row['id']; ?>" title="Modifier">
+                                <a href="edit_article.php?id=<?php echo $row['id']; ?>" title="Modify">
                                     <i class="fas fa-edit"></i> Modify
                                 </a>
-                                <a href="delete_article.php?id=<?php echo $row['id']; ?>" title="Supprimer" onclick="return confirmDeletion();">
+                                <a href="delete_article.php?id=<?php echo $row['id']; ?>" title="Delete" onclick="return confirmDeletion();">
                                     <i class="fas fa-trash-alt"></i> Delete
                                 </a>
                             </div>

@@ -61,7 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" name="title" required>
         </div>
         <div>
-            <label for="content">Content :</label>
             <div id="editor-container" style="height: 300px; border: 1px solid #ccc;"></div>
             <input type="hidden" name="content" id="hidden-content">
         </div>
@@ -85,7 +84,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     [{ header: [1, 2, 3, false] }],
                     ['bold', 'italic', 'underline'],
                     ['blockquote', 'code-block'],
-                    [{ list: 'ordered' }, { list: 'bullet' }],
                     [{ script: 'sub' }, { script: 'super' }],
                     [{ align: [] }],
                     ['link', 'image']
